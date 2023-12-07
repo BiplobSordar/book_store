@@ -1,5 +1,4 @@
 "use client";
-import clsx from "clsx";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import {
@@ -46,12 +45,9 @@ const NavLinks = () => {
             <Link
               href={link.href}
               key={link.name}
-              className={clsx(
-                "h-12 w-full  my-2 text-white text-xl flex justify-center  font-medium items-center hover:bg-gray-700",
-                {
-                  "bg-white text-blue-600": pathname == link.href,
-                }
-              )}
+              className={`h-12 w-full  my-2 ${
+                pathname == link.href ? "bg-white text-blue-600" : "text-white"
+              } text-xl flex justify-center  font-medium items-center hover:bg-gray-700`}
             >
               <LinkIcon />
               <p className="ml-6">{link.name}</p>
@@ -69,12 +65,9 @@ const NavLinks = () => {
             <Link
               href={link.href}
               key={link.name}
-              className={clsx(
-                "h-12 w-full  my-2 text-white text-xl flex justify-center  font-medium items-center hover:bg-gray-700",
-                {
-                  "bg-white text-blue-600": pathname == link.href,
-                }
-              )}
+              className={`h-12 w-full  my-2 ${
+                pathname == link.href ? "bg-white text-blue-600" : "text-white"
+              } text-xl flex justify-center  font-medium items-center hover:bg-gray-700`}
             >
               <LinkIcon />
               <p className="ml-6">{link.name}</p>
