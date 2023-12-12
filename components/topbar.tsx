@@ -7,7 +7,7 @@ import SearchBar from "./search-bar";
 
 const TopBar = () => {
   return (
-    <header className="bg-gray-800 fixed top-0 flex justify-between w-full  p-4 items-center">
+    <header className="bg-gray-800 fixed top-0 flex z-40 justify-between w-full  p-4 items-center">
       {/* Brand Logo */}
       <div className="w-1/6 flex items-center text-xl justify-center text-white px-6">
         <Link href={"/"}>Book Store</Link>

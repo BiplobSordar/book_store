@@ -1,4 +1,3 @@
-import AdminTopBar from "@/components/admin-topbar";
 import SideNavbar from "@/components/side-nav";
 import { Metadata } from "next";
 import React from "react";
@@ -9,13 +8,12 @@ export const metadata: Metadata = {
 
 const layout = ({ children }: { children: React.ReactNode }) => {
   return (
-    <>
-      <AdminTopBar />
-      <div className="flex grow  h-full w-full absolute top-20">
-        <SideNavbar />
-        <div className="w-5/6">{children}</div>
+    <div className="flex grow  h-full w-full absolute top-20">
+      <SideNavbar />
+      <div className="w-5/6  bg-gray-100 mx-2 border border-gray-300">
+        {children}
       </div>
-    </>
+    </div>
   );
 };
 
