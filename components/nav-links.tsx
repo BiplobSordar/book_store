@@ -1,4 +1,5 @@
 "use client";
+import { signOut, useSession } from "next-auth/react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import {
@@ -10,6 +11,8 @@ import {
   FaHome,
   FaImage,
   FaSearch,
+  FaSignInAlt,
+  FaSignOutAlt,
   FaTachometerAlt,
   FaUser,
   FaUserSecret,
@@ -33,10 +36,10 @@ let adminLinks = [
 ];
 
 const NavLinks = () => {
+  const session = useSession();
   const pathname = usePathname();
-  let path = pathname.split("/");
 
-  if (path[1] === "admin") {
+  if (session?.data?.user?.role === "ADMIN") {
     return (
       <>
         {adminLinks.map((link) => {
@@ -54,6 +57,27 @@ const NavLinks = () => {
             </Link>
           );
         })}
+        <div className="w-full">
+          {session.status === "authenticated" ? (
+            <button
+              onClick={() => {
+                signOut();
+              }}
+              className="h-12 w-full  my-2 text-white text-xl flex justify-center  font-medium items-center hover:bg-gray-700"
+            >
+              <FaSignOutAlt />
+              <p className="ml-6">Logout</p>
+            </button>
+          ) : (
+            <Link
+              className="h-12 w-full  my-2 text-white text-xl flex justify-center  font-medium items-center hover:bg-gray-700"
+              href={"login"}
+            >
+              <FaSignInAlt />
+              <p className="ml-6">Login</p>
+            </Link>
+          )}
+        </div>
       </>
     );
   } else {
@@ -74,6 +98,27 @@ const NavLinks = () => {
             </Link>
           );
         })}
+        <div className="w-full">
+          {session.status === "authenticated" ? (
+            <button
+              onClick={() => {
+                signOut();
+              }}
+              className="h-12 w-full  my-2 text-white text-xl flex justify-center  font-medium items-center hover:bg-gray-700"
+            >
+              <FaSignOutAlt />
+              <p className="ml-6">Logout</p>
+            </button>
+          ) : (
+            <Link
+              className="h-12 w-full  my-2 text-white text-xl flex justify-center  font-medium items-center hover:bg-gray-700"
+              href={"login"}
+            >
+              <FaSignInAlt />
+              <p className="ml-6">Login</p>
+            </Link>
+          )}
+        </div>
       </>
     );
   }
