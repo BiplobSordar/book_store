@@ -39,89 +39,93 @@ const NavLinks = () => {
   const session = useSession();
   const pathname = usePathname();
 
-  if (session?.data?.user?.role === "ADMIN") {
-    return (
-      <>
-        {adminLinks.map((link) => {
-          const LinkIcon = link.icon;
-          return (
-            <Link
-              href={link.href}
-              key={link.name}
-              className={`h-12 w-full  my-2 ${
-                pathname == link.href ? "bg-white text-blue-600" : "text-white"
-              } text-xl flex justify-center  font-medium items-center hover:bg-gray-700`}
-            >
-              <LinkIcon />
-              <p className="ml-6">{link.name}</p>
-            </Link>
-          );
-        })}
-        <div className="w-full">
-          {session.status === "authenticated" ? (
-            <button
-              onClick={() => {
-                signOut();
-              }}
-              className="h-12 w-full  my-2 text-white text-xl flex justify-center  font-medium items-center hover:bg-gray-700"
-            >
-              <FaSignOutAlt />
-              <p className="ml-6">Logout</p>
-            </button>
-          ) : (
-            <Link
-              className="h-12 w-full  my-2 text-white text-xl flex justify-center  font-medium items-center hover:bg-gray-700"
-              href={"login"}
-            >
-              <FaSignInAlt />
-              <p className="ml-6">Login</p>
-            </Link>
-          )}
-        </div>
-      </>
-    );
-  } else {
-    return (
-      <>
-        {clientLinks.map((link) => {
-          const LinkIcon = link.icon;
-          return (
-            <Link
-              href={link.href}
-              key={link.name}
-              className={`h-12 w-full  my-2 ${
-                pathname == link.href ? "bg-white text-blue-600" : "text-white"
-              } text-xl flex justify-center  font-medium items-center hover:bg-gray-700`}
-            >
-              <LinkIcon />
-              <p className="ml-6">{link.name}</p>
-            </Link>
-          );
-        })}
-        <div className="w-full">
-          {session.status === "authenticated" ? (
-            <button
-              onClick={() => {
-                signOut();
-              }}
-              className="h-12 w-full  my-2 text-white text-xl flex justify-center  font-medium items-center hover:bg-gray-700"
-            >
-              <FaSignOutAlt />
-              <p className="ml-6">Logout</p>
-            </button>
-          ) : (
-            <Link
-              className="h-12 w-full  my-2 text-white text-xl flex justify-center  font-medium items-center hover:bg-gray-700"
-              href={"login"}
-            >
-              <FaSignInAlt />
-              <p className="ml-6">Login</p>
-            </Link>
-          )}
-        </div>
-      </>
-    );
-  }
+  return (
+    <>
+      {session?.data?.user?.role !== "ADMIN" ? (
+        <>
+          {clientLinks.map((link) => {
+            const LinkIcon = link.icon;
+            return (
+              <Link
+                href={link.href}
+                key={link.name}
+                className={`h-12 w-full  my-2 ${
+                  pathname == link.href
+                    ? "bg-white text-blue-600"
+                    : "text-white"
+                } text-xl flex justify-center  font-medium items-center hover:bg-gray-700`}
+              >
+                <LinkIcon />
+                <p className="ml-6">{link.name}</p>
+              </Link>
+            );
+          })}
+          <div className="w-full">
+            {session.status === "authenticated" ? (
+              <button
+                onClick={() => {
+                  signOut();
+                }}
+                className="h-12 w-full  my-2 text-white text-xl flex justify-center  font-medium items-center hover:bg-gray-700"
+              >
+                <FaSignOutAlt />
+                <p className="ml-6">Logout</p>
+              </button>
+            ) : (
+              <Link
+                className="h-12 w-full  my-2 text-white text-xl flex justify-center  font-medium items-center hover:bg-gray-700"
+                href={"login"}
+              >
+                <FaSignInAlt />
+                <p className="ml-6">Login</p>
+              </Link>
+            )}
+          </div>
+        </>
+      ) : (
+        <>
+          {adminLinks.map((link) => {
+            const LinkIcon = link.icon;
+            return (
+              <Link
+                href={link.href}
+                key={link.name}
+                className={`h-12 w-full  my-2 ${
+                  pathname == link.href
+                    ? "bg-white text-blue-600"
+                    : "text-white"
+                } text-xl flex justify-center  font-medium items-center hover:bg-gray-700`}
+              >
+                <LinkIcon />
+                <p className="ml-6">{link.name}</p>
+              </Link>
+            );
+          })}
+          <div className="w-full">
+            {session.status === "authenticated" ? (
+              <button
+                onClick={() => {
+                  signOut();
+                }}
+                className="h-12 w-full  my-2 text-white text-xl flex justify-center  font-medium items-center hover:bg-gray-700"
+              >
+                <FaSignOutAlt />
+                <p className="ml-6">Logout</p>
+              </button>
+            ) : (
+              <Link
+                className="h-12 w-full  my-2 text-white text-xl flex justify-center  font-medium items-center hover:bg-gray-700"
+                href={"login"}
+              >
+                <FaSignInAlt />
+                <p className="ml-6">Login</p>
+              </Link>
+            )}
+          </div>
+        </>
+      )}
+    </>
+  );
 };
 
 export default NavLinks;
