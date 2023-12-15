@@ -1,7 +1,13 @@
-type Props = {};
+import AddCategoryModal from "./components/add-category-modal";
+import CategoryTable from "./components/category-table";
 
-const Category = (props: Props) => {
-  return <div >Category</div>;
+const Category = async () => {
+  return (
+    <div className="flex flex-col h-full w-full  items-center">
+      <AddCategoryModal />
+      <CategoryTable />
+    </div>
+  );
 };
 
 export default Category;
