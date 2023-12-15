@@ -1,16 +1,15 @@
-interface CategoryItem {
-  id: number;
-  name: string;
-  genre: string;
-}
+import { getCategories } from "@/server-calls/category";
 
-const CategoryTable = () => {
-  const categoryItems: CategoryItem[] = [
-    { id: 1, name: "Action", genre: "Fiction" },
-    { id: 2, name: "Adventure", genre: "Non-Fiction" },
-    { id: 3, name: "History", genre: "Fiction" },
-    // Add more items as needed
-  ];
+const CategoryTable = async () => {
+  const categories = await getCategories();
+
+  if (!categories) {
+    return (
+      <div>
+        <h1>{`Don't Have Any Category`}</h1>
+      </div>
+    );
+  }
   return (
     <table className="w-3/4 border flex flex-col mt-5">
       <thead className="border h-8 w-full">
@@ -21,14 +20,18 @@ const CategoryTable = () => {
         </tr>
       </thead>
       <tbody className="w-full">
-        {categoryItems.map((item) => (
+        {categories.map((item) => (
           <tr
             className="w-full h-10 flex items-center justify-evenly border"
             key={item.id}
           >
-            <td className="w-1/3 text-center h-full border">{item.name}</td>
-            <td className="w-1/3 text-center h-full border">{item.genre}</td>
-            <td className="w-1/3 text-center h-full border">
+            <td className="w-1/3 flex items-center justify-center h-full border">
+              {item.title}
+            </td>
+            <td className="w-1/3 flex items-center justify-center h-full border">
+              {item.genre}
+            </td>
+            <td className="w-1/3 flex items-center justify-center h-full border">
               Actions Component
             </td>
           </tr>

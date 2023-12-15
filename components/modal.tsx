@@ -4,33 +4,30 @@ interface modalProps {
   children: React.ReactNode;
   isOpen: boolean;
   onClose: () => void;
-  heading: string;
+  title: string;
 }
 
-const Modal = ({ children, isOpen, onClose, heading }: modalProps) => {
+const Modal = ({ children, isOpen, onClose, title }: modalProps) => {
+  const handleClose = (e: any) => {
+    if (e.target.id === "modalBackgound") {
+      onClose();
+    }
+  };
+  if (!isOpen) return null;
   return (
     <div
-      className={`${
-        isOpen ? "block" : "hidden"
-      } w-full h-full flex items-center justify-center`}
+      onClick={handleClose}
+      id="modalBackgound"
+      className="fixed inset-0 backdrop-blur-xl flex flex-col items-center justify-center h-full w-full bg-black  bg-opacity-70"
     >
-      <div className="modal-overlay" onClick={onClose}></div>
-      <div className="relative w-1/2 h-80 border shadow-2xl rounded-lg ">
-        {/* <div className="flex items-center w-full"> */}
-        <button className="absolute top-6 right-10" onClick={onClose}>
+      {/* modal  */}
+      <div className="w-[600px] min-h-[300px] relative p-3 border bg-gray-300 shadow-xl rounded-lg ">
+        <button onClick={onClose} className="absolute top-3 right-5">
           <MdClose size={30} />
         </button>
-        {/* </div> */}
-
-        <div className="modal-content h-full flex flex-col items-center justify-center">
-          {/* Modal Header */}
-          <div className="modal-header">
-            <h3 className="text-lg font-semibold">{heading}</h3>
-          </div>
-
-          {/* Modal Body - Form */}
-          <div className="w-3/4">{children}</div>
-        </div>
+        <h1 className="text-lg text-center mt-3">{title}</h1>
+        {/* modal Body  */}
+        <div>{children}</div>
       </div>
     </div>
   );
