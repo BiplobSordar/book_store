@@ -2,7 +2,7 @@ type Props = {};
 
 const Denied = (props: Props) => {
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100">
+    <div className="h-screen flex items-center justify-center bg-gray-100">
       <div className="bg-white flex flex-col items-center p-8 rounded shadow-md">
         <Image
           width={400}

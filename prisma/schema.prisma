@@ -30,3 +30,12 @@ enum Role {
   USER
   ADMIN
 }
+
+model Publisher {
+  id        String   @id @default(uuid())
+  name      String   @db.VarChar(200)
+  email     String?  @db.VarChar(100)
+  phone     String?  @db.VarChar(50)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @default(now())
+}
