@@ -1,5 +1,5 @@
 "use client";
-import { createCategory } from "@/lib/actions";
+import { createCategory } from "@/lib/actions/categoryActions";
 import { CategorySchema } from "@/schema/categorySchema";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
