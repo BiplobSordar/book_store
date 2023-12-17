@@ -35,6 +35,7 @@ const CreatePublisherForm = ({
           id="name"
           defaultValue={initialFormData ? initialFormData.name : ""}
         />
+        {state.message ? <p className="text-red-500">{state?.message}</p> : ""}
         {state1?.errors?.name
           ? state1.errors.name.map((err) => (
               <p key={err} className="text-red-500">
