@@ -3,7 +3,7 @@ import CategoryTable from "./components/category-table";
 
 const Category = async () => {
   return (
-    <div className="flex flex-col h-full w-full  items-center">
+    <div className="flex flex-col h-full w-full justify-evenly  items-center">
       <AddCategoryModal />
       <CategoryTable />
     </div>

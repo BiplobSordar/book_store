@@ -85,6 +85,7 @@ const LoginForm = () => {
           }}
           value={formData?.password}
           minLength={6}
+          required
         />
         <p className="mt-2 text-red-500">{error?.password}</p>
       </div>
@@ -95,7 +96,7 @@ const LoginForm = () => {
         {loading ? "Processing" : "Sign In"}
       </button>
       <p className="mt-10">
-        Don't Have An Account?
+        {`Don't Have An Account?`}
         <Link className="text-red-500 hover:text-gray-600" href={"/register"}>
           Create Account
         </Link>

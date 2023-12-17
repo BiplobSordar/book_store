@@ -1,7 +1,8 @@
 "use server";
 
 import { revalidatePath } from "next/cache";
-import prismadb from "./prismadb";
+
+import prismadb from "../prismadb";
 
 export type dataType = {
   title: string;
