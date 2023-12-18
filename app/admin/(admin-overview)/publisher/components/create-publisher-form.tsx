@@ -35,7 +35,7 @@ const CreatePublisherForm = ({
           id="name"
           defaultValue={initialFormData ? initialFormData.name : ""}
         />
-        {state.message ? <p className="text-red-500">{state?.message}</p> : ""}
+
         {state1?.errors?.name
           ? state1.errors.name.map((err) => (
               <p key={err} className="text-red-500">
@@ -105,6 +105,7 @@ const CreatePublisherForm = ({
             ))
           : ""}
       </div>
+      {state.message ? <p className="text-red-500">{state?.message}</p> : ""}
       <div className="w-5/6 h-20 flex justify-center items-center">
         <button
           className="h-10 w-1/5 bg-slate-600  rounded-2xl text-white"

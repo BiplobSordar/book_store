@@ -1,7 +1,12 @@
 import SideNavbar from "@/components/side-nav";
+import { getServerSession } from "next-auth";
+import { redirect } from "next/navigation";
 import React from "react";
+import { authOptions } from "../api/auth/[...nextauth]/options";
 
-const layout = ({ children }: { children: React.ReactNode }) => {
+const layout = async ({ children }: { children: React.ReactNode }) => {
+  const session = await getServerSession(authOptions);
+  if (session?.user.role == "ADMIN") redirect("/admin");
   return (
     <div className="flex grow w-full absolute top-20">
       <SideNavbar />
