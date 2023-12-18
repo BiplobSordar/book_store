@@ -2,6 +2,7 @@
 
 import { PublisherSchema } from "@/schema/publisherSchema";
 import { PublisherState } from "@/types/actionStateType";
+import { Prisma } from "@prisma/client";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import prismadb from "../prismadb";
@@ -30,28 +31,28 @@ export async function createPublisher(
     };
   }
 
-  const isPublisherExist = await prismadb.publisher.findFirst({
-    where: {
-      name: validateFields.data.name,
-      email: validateFields.data.email,
-      phone: validateFields.data.phone,
-    },
-  });
+  try {
+    const { name, email, phone } = validateFields.data;
+    await prismadb.publisher.create({
+      data: {
+        name,
+        email,
+        phone,
+      },
+    });
+  } catch (error) {
+    if (error instanceof Prisma.PrismaClientKnownRequestError) {
+      // The .code property can be accessed in a type-safe manner
+      if (error.code === "P2002") {
+        return {
+          message: "Your Name, Email And Phone Number Must be Unique",
+        };
+      }
+    }
 
-  if (isPublisherExist) {
-    return {
-      message: "Already Exist In DataBase Change Name Or Password Or Phone....",
-    };
+    console.log(error);
+    throw new Error("Cannot Add Publisher Because of Database Error");
   }
-
-  const { name, email, phone } = validateFields.data;
-  await prismadb.publisher.create({
-    data: {
-      name,
-      email,
-      phone,
-    },
-  });
 
   revalidatePath("/admin/publisher");
   redirect("/admin/publisher");

@@ -4,6 +4,7 @@ import { unstable_noStore as noStore } from "next/cache";
 export async function getPublisher() {
   noStore();
   try {
+    // await new Promise((resolve) => setTimeout(resolve, 3000));
     const publishers = await prismadb.publisher.findMany();
     return publishers;
   } catch (error) {
