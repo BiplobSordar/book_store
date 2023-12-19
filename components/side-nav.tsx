@@ -24,7 +24,7 @@ const SideNavbar = async () => {
   const session = await getServerSession(authOptions);
 
   const links: NavLinksProps[] =
-    session?.user.role === "ADMIN"
+    session?.user.role === "ADMIN" || "SUPER_ADMIN"
       ? adminLinks
       : clientLinks.map((link) => ({
           name: link.name,
