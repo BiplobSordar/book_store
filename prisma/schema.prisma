@@ -29,6 +29,7 @@ model Category {
 enum Role {
   USER
   ADMIN
+  SUPER_ADMIN
 }
 
 model Publisher {

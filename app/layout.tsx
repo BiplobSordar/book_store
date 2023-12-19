@@ -23,7 +23,11 @@ export default async function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        {session?.user.role === "ADMIN" ? <AdminTopBar /> : <TopBar />}
+        {session?.user.role === "ADMIN" || "SUPER_ADMIN" ? (
+          <AdminTopBar />
+        ) : (
+          <TopBar />
+        )}
 
         <AuthSessionProvider>{children}</AuthSessionProvider>
       </body>

@@ -6,7 +6,8 @@ export default withAuth(
   function middleware(req) {
     if (
       req.nextUrl.pathname.startsWith("/admin") &&
-      req.nextauth.token?.user?.role !== "ADMIN"
+      req.nextauth.token?.user?.role !== "ADMIN" &&
+      req.nextauth.token?.user?.role !== "SUPER_ADMIN"
     ) {
       return NextResponse.rewrite(new URL("/denied", req.url));
     }

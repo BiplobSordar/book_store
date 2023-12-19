@@ -15,7 +15,11 @@ export async function POST(request: Request) {
     const user = await prismadb.user.findFirst();
     if (user === null) {
       await prismadb.user.create({
-        data: { email: data.email, password: hashpassword, role: "ADMIN" },
+        data: {
+          email: data.email,
+          password: hashpassword,
+          role: "SUPER_ADMIN",
+        },
       });
       return Response.json({
         status: 200,
