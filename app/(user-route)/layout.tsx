@@ -6,7 +6,8 @@ import { authOptions } from "../api/auth/[...nextauth]/options";
 
 const layout = async ({ children }: { children: React.ReactNode }) => {
   const session = await getServerSession(authOptions);
-  if (session?.user.role == "ADMIN") redirect("/admin");
+  if (session?.user.role == "ADMIN" || session?.user.role == "SUPER_ADMIN")
+    redirect("/admin");
   return (
     <div className="flex grow w-full absolute top-20">
       <SideNavbar />

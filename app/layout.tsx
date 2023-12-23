@@ -20,10 +20,12 @@ export default async function RootLayout({
   children: React.ReactNode;
 }) {
   const session = await getServerSession(authOptions);
+
   return (
     <html lang="en">
       <body className={inter.className}>
-        {session?.user.role === "ADMIN" || "SUPER_ADMIN" ? (
+        {(session && session?.user.role === "ADMIN") ||
+        session?.user.role === "SUPER_ADMIN" ? (
           <AdminTopBar />
         ) : (
           <TopBar />
