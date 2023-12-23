@@ -24,7 +24,6 @@ export async function createPublisher(
   });
 
   if (!validateFields.success) {
-    console.log(validateFields.error.flatten().fieldErrors);
     return {
       errors: validateFields.error.flatten().fieldErrors,
       message: "Missing Fields. Failed to Create Publisher",

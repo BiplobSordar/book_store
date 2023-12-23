@@ -9,7 +9,7 @@ interface PublisherProps {
 const PublisherDetails = ({ id, name }: PublisherProps) => {
   return (
     <div className="w-full m-1 h-8 bg-gray-200 flex justify-between items-center rounded-lg">
-      <Link href={"/"}>
+      <Link href={`/admin/publisher/${id}`}>
         <h1 className="ml-10">{name}</h1>
       </Link>
       <div className="flex items-center gap-4 mr-10">
