@@ -33,8 +33,8 @@ const SideNavbar = async () => {
         }));
 
   return (
-    <aside className="bg-gray-800 pb-3 h-full w-1/6 sticky top-20 ml-1  flex flex-col rounded items-center justify-between">
-      <nav className="flex flex-col  mt-12 justify-evenly w-full">
+    <aside className="bg-gray-800 pb-3 h-side-nav-h w-1/6 sticky top-20 ml-1  flex flex-col rounded items-center justify-between">
+      <nav className="h-full flex flex-col  mt-12 justify-evenly w-full">
         <NavLinks data={links} />
       </nav>
     </aside>

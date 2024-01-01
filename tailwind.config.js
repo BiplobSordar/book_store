@@ -53,6 +53,7 @@ module.exports = {
       },
       height: {
         '110': '36rem',
+        'side-nav-h':'88vh'
       },
       borderRadius: {
         lg: "var(--radius)",

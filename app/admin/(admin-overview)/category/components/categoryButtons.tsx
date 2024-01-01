@@ -9,7 +9,7 @@ export const DeleteButton = ({ id }: { id: string }) => {
       className="flex h-full justify-center items-center"
     >
       <button type="submit">
-        <MdDelete size={20} />
+        <MdDelete color={"green"} size={20} />
       </button>
     </form>
   );
