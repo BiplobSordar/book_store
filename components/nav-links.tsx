@@ -23,6 +23,7 @@ let Links = [
   { name: "Books", href: "/books", icon: FaBook },
   { name: "Order", href: "/order", icon: FaClipboardList },
   { name: "Profile", href: "/profile", icon: FaUser },
+  { name: "Profile", href: "/admin/profile", icon: FaUser },
   { name: "Setting", href: "/setting", icon: FaCog },
   { name: "Dashboard", href: "/admin", icon: FaTachometerAlt },
   { name: "User", href: "/admin/users", icon: FaColumns },
@@ -45,38 +46,40 @@ const NavLinks = ({ data }: { data: NavLinksProps[] }) => {
   const pathname = usePathname();
 
   return (
-    <>
-      {data.map((link) => {
-        const viewIcon = Links.filter((item: any) => item.href === link.href);
-        link.viewLink = viewIcon[0];
-        const LinkIcon = link?.viewLink?.icon;
-        return (
-          <Link
-            href={link.href}
-            key={link.name}
-            className={`h-12 w-full  my-2 ${
-              pathname == link.href ? "bg-white text-blue-600" : "text-white"
-            } text-xl flex justify-center  font-medium items-center hover:bg-gray-700`}
-          >
-            <LinkIcon />
-            <p className="ml-6">{link.name}</p>
-          </Link>
-        );
-      })}
-      <div className="w-full">
+    <div className="h-full flex flex-col justify-between">
+      <div>
+        {data.map((link) => {
+          const viewIcon = Links.filter((item: any) => item.href === link.href);
+          link.viewLink = viewIcon[0];
+          const LinkIcon = link?.viewLink?.icon;
+          return (
+            <Link
+              href={link.href}
+              key={link.name}
+              className={`h-12  rounded-lg shadow-lg bg-gray-700   m-2 ${
+                pathname == link.href ? "bg-white text-blue-600" : "text-white"
+              } text-xl flex justify-center  font-medium items-center hover:bg-gray-700`}
+            >
+              <LinkIcon />
+              <p className="ml-6">{link.name}</p>
+            </Link>
+          );
+        })}
+      </div>
+      <div className="w-60">
         {session.status === "authenticated" ? (
           <button
             onClick={() => {
               signOut();
             }}
-            className="h-12 w-full  my-2 text-white text-xl flex justify-center  font-medium items-center hover:bg-gray-700"
+            className="h-12  rounded-lg shadow-lg bg-gray-700  w-full  m-2 text-white text-xl flex justify-center  font-medium items-center hover:bg-gray-700"
           >
             <FaSignOutAlt />
-            <p className="ml-6">Logout</p>
+            <p className="ml-6 hover:text-red-500">Logout</p>
           </button>
         ) : (
           <Link
-            className="h-12 w-full  my-2 text-white text-xl flex justify-center  font-medium items-center hover:bg-gray-700"
+            className="h-12  rounded-lg shadow-lg bg-gray-700 m-2 text-white text-xl flex justify-center  font-medium items-center hover:text-green-500"
             href={"login"}
           >
             <FaSignInAlt />
@@ -84,7 +87,7 @@ const NavLinks = ({ data }: { data: NavLinksProps[] }) => {
           </Link>
         )}
       </div>
-    </>
+    </div>
   );
 };
 
