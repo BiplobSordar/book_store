@@ -23,6 +23,7 @@ let Links = [
   { name: "Books", href: "/books", icon: FaBook },
   { name: "Order", href: "/order", icon: FaClipboardList },
   { name: "Profile", href: "/profile", icon: FaUser },
+  { name: "Profile", href: "/admin/profile", icon: FaUser },
   { name: "Setting", href: "/setting", icon: FaCog },
   { name: "Dashboard", href: "/admin", icon: FaTachometerAlt },
   { name: "User", href: "/admin/users", icon: FaColumns },

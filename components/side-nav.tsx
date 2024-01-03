@@ -12,6 +12,7 @@ let clientLinks = [
 
 let adminLinks = [
   { name: "Dashboard", href: "/admin", icon: "FaTachometerAlt" },
+  { name: "Profile", href: "/admin/profile", icon: "FaUser" },
   { name: "User", href: "/admin/users", icon: "FaColumns" },
   { name: "Books", href: "/admin/books", icon: "FaBook" },
   { name: "Category", href: "/admin/category", icon: "FaSearch" },
