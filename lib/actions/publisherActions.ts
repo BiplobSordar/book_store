@@ -1,6 +1,9 @@
 "use server";
 
-import { PublisherSchema } from "@/schema/publisherSchema";
+import {
+  AddAuthorToPublisher,
+  PublisherSchema,
+} from "@/schema/publisherSchema";
 import { PublisherState } from "@/types/actionStateType";
 import { Prisma } from "@prisma/client";
 import { revalidatePath } from "next/cache";
@@ -113,3 +116,47 @@ export async function deletePublisher(id: string) {
   revalidatePath("/admin/publisher");
   redirect("/admin/publisher");
 }
+export type state = {
+  errors?: {
+    option?: string[];
+  };
+  message: string | null;
+};
+export const addAuthorToPublisher = async (
+  prevState: state,
+  formData: FormData
+) => {
+  const validAuthor = AddAuthorToPublisher.safeParse({
+    publisherId: formData.get("publisherId"),
+    author: formData.get("author"),
+  });
+  if (!validAuthor.success) {
+    return {
+      errors: validAuthor.error.flatten().fieldErrors,
+      message: "Error Happend",
+    };
+  }
+
+  try {
+    await prismadb.publisher.update({
+      where: { id: validAuthor.data.publisherId },
+      data: {
+        authors: {
+          create: {
+            author: {
+              connect: { id: validAuthor.data.author },
+            },
+          },
+        },
+      },
+      include: {
+        authors: true,
+      },
+    });
+  } catch (error) {
+    console.log(error);
+  }
+
+  revalidatePath(`/admin/publisher/${validAuthor.data.publisherId}`);
+  redirect(`/admin/publisher/${validAuthor.data.publisherId}`);
+};

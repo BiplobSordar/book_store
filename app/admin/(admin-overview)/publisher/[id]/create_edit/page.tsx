@@ -4,7 +4,7 @@ import CreatePublisherForm from "../../components/create-publisher-form";
 
 const CreatePublisher = async ({ params }: { params: { id: string } }) => {
   const publisher = await getPubliherById(params.id);
-  if (!publisher && params.id) {
+  if (!params.id) {
     notFound();
   }
   return (
