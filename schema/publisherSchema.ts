@@ -8,3 +8,8 @@ export const PublisherSchema = z.object({
   createdAt: z.date(),
   updatedAt: z.date(),
 });
+
+export const AddAuthorToPublisher = z.object({
+  publisherId: z.string().uuid({ message: "Cannot Get Publisher Id" }),
+  author: z.string().uuid({ message: "Please Select a Author To Add" }),
+});

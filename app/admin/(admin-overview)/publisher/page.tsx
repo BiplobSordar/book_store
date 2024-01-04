@@ -15,7 +15,7 @@ const Publisher = async () => {
           </p>
         </div>
         <div>
-          <Link href={"/admin/publisher/create"}>
+          <Link href={"/admin/publisher/create/create_edit"}>
             <Button label="Add Publisher" />
           </Link>
         </div>
