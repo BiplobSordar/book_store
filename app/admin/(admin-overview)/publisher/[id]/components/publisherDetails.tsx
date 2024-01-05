@@ -1,6 +1,7 @@
 import prismadb from "@/lib/prismadb";
 import Image from "next/image";
 import Link from "next/link";
+import { AuthorDeleteForm } from "./author-delete-button";
 
 type Props = { id: string };
 
@@ -54,11 +55,15 @@ const PublisherDetails = async (props: Props) => {
             {publisher?.authors.map((author) => (
               <div
                 key={author.authorId}
-                className=" w-full h-7 flex items-center justify-start  bg-gray-300 rounded-md shadow-lg"
+                className=" w-full h-7 flex items-center justify-between  bg-gray-300 rounded-md shadow-lg"
               >
                 <Link href={`/admin/author/${author.author.id}`}>
                   <h2 className="ml-2">{author.author.name}</h2>
                 </Link>
+                <AuthorDeleteForm
+                  publisherId={publisher.id}
+                  authorId={author.author.id}
+                />
               </div>
             ))}
           </div>

@@ -160,3 +160,32 @@ export const addAuthorToPublisher = async (
   revalidatePath(`/admin/publisher/${validAuthor.data.publisherId}`);
   redirect(`/admin/publisher/${validAuthor.data.publisherId}`);
 };
+
+export async function DeleteAuthorFromPublisher(formData: FormData) {
+  const deleteValidation = AddAuthorToPublisher.safeParse({
+    author: formData.get("authorId"),
+    publisherId: formData.get("publisherId"),
+  });
+  if (!deleteValidation.success) {
+    console.log("error happend");
+  }
+
+  const { data }: any = deleteValidation;
+
+  try {
+    await prismadb.author_Publisher.delete({
+      where: {
+        authorId_publisherId: {
+          authorId: data?.author,
+          publisherId: data?.publisherId,
+        },
+      },
+    });
+  } catch (error) {
+    console.log(error);
+    throw new Error("Cannot Delete Relation Because of Database Error");
+  }
+
+  revalidatePath(`/admin/publisher/${data?.publisherId}`);
+  redirect(`/admin/publisher/${data?.publisherId}`);
+}

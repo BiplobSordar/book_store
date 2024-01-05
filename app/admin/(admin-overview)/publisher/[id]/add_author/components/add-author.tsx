@@ -3,6 +3,7 @@
 import { addAuthorToPublisher } from "@/lib/actions/publisherActions";
 import { useState } from "react";
 import { useFormState } from "react-dom";
+import { SubmitButton } from "./submit-button";
 
 type Props = {
   id: string;
@@ -54,12 +55,7 @@ const AddAuthorToPublisher = (props: Props) => {
         </div>
 
         <div className="w-full flex justify-end mt-10">
-          <button
-            className="w-60 h-14 bg-green-400 rounded-lg hover:bg-green-300"
-            type="submit"
-          >
-            Add Authour To Publisher
-          </button>
+          <SubmitButton />
         </div>
       </form>
     </div>
