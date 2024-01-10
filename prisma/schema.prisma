@@ -72,3 +72,27 @@ model Author_Publisher {
 
   @@id([authorId, publisherId])
 }
+
+model Book {
+  id               String    @id @default(uuid())
+  title            String
+  authorId         String
+  publisherId      String
+  categoryId       String
+  price            String
+  publication_date String
+  language         String
+  isbn             String
+  quantity         Quantity?
+  createdAt        DateTime  @default(now())
+  updatedAt        DateTime  @updatedAt
+}
+
+model Quantity {
+  id        String   @id @default(uuid())
+  stock     String
+  book      Book     @relation(fields: [bookId], references: [id])
+  bookId    String   @unique
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
