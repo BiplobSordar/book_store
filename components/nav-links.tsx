@@ -72,7 +72,7 @@ const NavLinks = ({ data }: { data: NavLinksProps[] }) => {
             onClick={() => {
               signOut();
             }}
-            className="h-12 w-full  rounded-lg shadow-lg bg-gray-700  m-2 text-white text-xl flex justify-center  font-medium items-center hover:bg-gray-700"
+            className="h-12 w-full rounded-lg shadow-lg bg-gray-700 m-2 text-white text-xl flex justify-center font-medium items-center hover:bg-gray-700"
           >
             <FaSignOutAlt />
             <p className="ml-5 hover:text-red-500">Logout</p>
